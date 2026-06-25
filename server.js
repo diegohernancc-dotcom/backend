@@ -6,12 +6,17 @@ require("dotenv").config();
 const app=express();
 
 app.use(cors());
-
 app.use(express.json());
 
 const db=new Pool({
-connectionString:
-process.env.DATABASE_URL
+
+ connectionString:
+ process.env.DATABASE_URL,
+
+ ssl:{
+  rejectUnauthorized:false
+ }
+
 });
 
 app.get("/",(req,res)=>{
