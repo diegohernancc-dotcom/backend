@@ -21,6 +21,18 @@ const db=new Pool({
 
 });
 
+app.get('/usuarios', async(req,res)=>{
+ const r =
+ await pool.query(
+ 'SELECT * FROM usuarios'
+ );
+
+ res.json(r.rows);
+});
+
+
+
+
 app.get("/",(req,res)=>{
 
 res.send("API funcionando");
