@@ -65,8 +65,6 @@ console.log(
 
 
 
-
-
 const pool = require('./db');
 
 app.get('/test-db', async (req, res) => {
@@ -90,6 +88,21 @@ app.get('/test-db', async (req, res) => {
 });
   
 
+
+
+
+
+  app.get("/usuarios", (req, res) => {
+    conexion.query("SELECT * FROM usuarios", (error, resultados) => {
+
+        if(error){
+            res.status(500).json(error);
+        }else{
+            res.json(resultados);
+        }
+
+    });
+});
   
   
 });
