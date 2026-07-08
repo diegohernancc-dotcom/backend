@@ -21,9 +21,6 @@ const db=new Pool({
 
 });
 
-
-
-
 app.get("/",(req,res)=>{
 
 res.send("API funcionando");
@@ -66,4 +63,33 @@ console.log(
 "Servidor activo"
 );
 
+
+
+
+
+const pool = require('./db');
+
+app.get('/test-db', async (req, res) => {
+
+    try {
+
+        const resultado = await pool.query('SELECT NOW()');
+
+        res.json(resultado.rows);
+
+    } catch (error) {
+
+        console.error(error);
+
+        res.status(500).json({
+            error: 'No se pudo conectar a PostgreSQL'
+        });
+
+    }
+
+});
+  
+
+  
+  
 });
